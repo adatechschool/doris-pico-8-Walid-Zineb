@@ -41,19 +41,27 @@ end
 
 function _update()
 
-if collision(player) then
-printh("salut")
+if not frog_colide() then
+--printh("pas de collision")
+	frog_x +=1
+	if frog_x > 1050  then
+	frog_x =1
+	end
+ if frog_x >30 then
+ frog_x=80
+ end
+ if frog_x > 79 then 
+ frog_x += 1
+ end 
 end
+
 
 
 	player_update()
 	player_animate()
 	--sfx(01,02,03,04)
 	
-	frog_x +=1
-	if frog_x > 1050 then
-	frog_x = 1
-	end
+
 	
 
 	
@@ -291,6 +299,7 @@ end
 frog_sprite = 16
 frog_x = 1
 frog_y = 112
+frog_jumping=false
 
 frog_anim_time = 0
 frog_anim_wait = .05
@@ -333,18 +342,30 @@ y/=8
 end
 
 -->8
---collision bis
+--collision 
 
-function collision(player)
-	if player.x>frog_x+8
-	or player.y>frog_y+8
-	or player.x+8<frog_y
-	or player.y+8<frog_x then
-	return false
-	else
-	return true	
-	end
+function frog_colide()
+if frog_x > 30 then
+  return true 
+ else 
+ return false
 end
+end
+
+
+
+
+
+--function collision(player)
+--	if player.x>frog_x+8
+--	or player.y>frog_y+8
+--	or player.x+8<frog_y
+--	or player.y+8<frog_x then
+--	return false
+--	else
+--	return true	
+--	end
+--end
 
 
 
