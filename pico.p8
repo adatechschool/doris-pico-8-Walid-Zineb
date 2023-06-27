@@ -1,6 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 38
 __lua__
+
 function _init()
 	player = {
 		sp = 1,
@@ -31,6 +32,7 @@ function _init()
 	cam_x = 0
 
 	--map limits
+
 	map_start = 0
 	map_end = 1024
 
@@ -39,15 +41,25 @@ function _init()
 end
 -->8
 --update and draw
+
 function _update()
+	if not frog_colide() then
+		--printh("pas de collision")
+		frog_x += 1
+		if frog_x > 1050 then
+			frog_x = 1
+		end
+		if frog_x > 30 then
+			frog_x = 80
+		end
+		if frog_x > 79 then
+			frog_x += 1
+		end
+	end
+
 	player_update()
 	player_animate()
 	--sfx(01,02,03,04)
-
-	frog_x += 1
-	if frog_x > 1050 then
-		frog_x = 1
-	end
 
 	if time() - frog_anim_time > frog_anim_wait then
 		frog_sprite += 1
@@ -255,6 +267,7 @@ end
 frog_sprite = 16
 frog_x = 1
 frog_y = 112
+frog_jumping = false
 
 frog_anim_time = 0
 frog_anim_wait = .05
@@ -288,17 +301,26 @@ function interact(x, y)
 end
 
 -->8
---prince
--->8
---collision bis
+--collision
 
-function collision(a, b)
-	if a.x > b.x + b
-			or a.y > b.y + 8
-			or a.x + 8 < b.y
-			or a.y + 8 < b.y then
+function frog_colide()
+	if frog_x > 30 then
+		return true
+	else
+		return false
 	end
 end
+
+--function collision(player)
+--	if player.x>frog_x+8
+--	or player.y>frog_y+8
+--	or player.x+8<frog_y
+--	or player.y+8<frog_x then
+--	return false
+--	else
+--	return true
+--	end
+--end
 
 __gfx__
 09899900098999000009899900098999000989990009899900098999000989999009899900000000000000000000000000000000000000000000000000000000
