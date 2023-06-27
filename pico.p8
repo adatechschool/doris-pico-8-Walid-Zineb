@@ -3,7 +3,7 @@ version 38
 __lua__
 
 function _init()
-	player = {
+ 	player = {
 		sp = 1,
 		x = 56,
 		y = 85,
@@ -33,16 +33,17 @@ function _init()
 	--map limits
 	map_start=0
 	map_end=1024
-	
-	--bullets
-	bullets = {}
-	
-
 		
 end
 -->8
 --update and draw
+
 function _update()
+
+if collision(player) then
+printh("salut")
+end
+
 
 	player_update()
 	player_animate()
@@ -87,6 +88,7 @@ function _draw()
 	map(0,0)
 	spr(player.sp, player.x, player.y, 1, 1, player.flp)	
  spr(frog_sprite,frog_x, frog_y)
+
  
 end
 
@@ -282,6 +284,7 @@ end
 -->8
 --enemies
 
+
 frog_sprite = 16
 frog_x = 1
 frog_y = 112
@@ -289,6 +292,8 @@ frog_y = 112
 frog_anim_time = 0
 frog_anim_wait = .05
 
+
+	
 
 
 
@@ -298,18 +303,25 @@ frog_anim_wait = .05
 --items
 
 -->8
---prince
--->8
 --collision bis
 
-function collision(a,b)
-	if a.x>b.x+b
-	or a.y>b.y+8
-	or a.x+8<b.y
-	or a.y+8<e.y then
-	
+function collision(player)
+	if player.x>frog_x+8
+	or player.y>frog_y+8
+	or player.x+8<frog_y
+	or player.y+8<frog_x then
+	return false
+	else
+	return true	
 	end
 end
+
+
+
+
+
+
+
 __gfx__
 09899900098999000009899900098999000989990009899900098999000989999009899900000000000000000000000000000000000000000000000000000000
 0891f1900891f19000089f1f09089f1f00089f1f09089f1f00089f1f00089f1f99089f1f00000000000000000000000000000000000000000000000000000000
