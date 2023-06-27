@@ -41,19 +41,17 @@ end
 
 function _update()
 
-if not frog_colide() then
+--if not frog_colide() then
 --printh("pas de collision")
 	frog_x +=1
 	if frog_x > 1050  then
 	frog_x =1
 	end
- if frog_x >30 then
+ if frog_x >30 and frog_x < 80  then
  frog_x=80
  end
- if frog_x > 79 then 
- frog_x += 1
- end 
-end
+ 
+--end
 
 
 
@@ -344,13 +342,13 @@ end
 -->8
 --collision 
 
-function frog_colide()
-if frog_x > 30 then
+--[[function frog_colide()
+if frog_x < 30 and frog_x > then
   return true 
  else 
  return false
 end
-end
+end]]
 
 
 
